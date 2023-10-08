@@ -1,0 +1,14 @@
+// 3-bit binary number to corresponding 2's complement
+CHIP cc1{
+	IN x,y,z;
+	OUT d0,d1,d2;
+	PARTS:                          
+		Or(a=z, b=z, out=d0);		
+		Or(a=x, b=y, out=w1);
+		Or(a=w1, b=z, out=d2);
+		Not(in=y, out=noty);
+		Not(in=z, out=notz);
+		And(a=noty, b=z, out=w2);
+		And(a=y, b=notz, out=w3);
+		Or(a=w2, b=w3, out=d1);
+}
