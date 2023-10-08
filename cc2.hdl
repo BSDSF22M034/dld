@@ -1,0 +1,18 @@
+// Majority Circuit
+CHIP cc2{
+	IN w,x,y,z;
+	OUT out;
+	PARTS:                          
+		Not(in=x, out=notx);
+		Not(in=w, out=notw);		
+		And(a=w, b=notx, out=w1);
+		And(a=w1, b=z, out=A1);
+		And(a=notw, b=x, out=w2);
+		And(a=w2, b=y, out=A2);
+		And(a=y, b=z, out=A3);
+		And(a=w, b=y, out=w3);
+		And(a=w3, b=z, out=A4);
+		Or(a=A1, b=A2, out=A5);
+		Or(a=A3, b=A4, out=A6);
+		Or(a=A5, b=A6, out=out);
+}
