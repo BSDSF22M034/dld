@@ -1,0 +1,17 @@
+// BCD_to_Excess_3_Circuit
+CHIP cc3{
+	IN A,B,C,D;
+	OUT w,x,y,z;
+	PARTS:                          
+	Or(a=C, b=D, out=w1);        //w1=C+D
+	And(a=B, b=w1, out=w2);      //w2=B(C+D)
+	Or(a=A, b=w2, out=w);        //w	                            
+	Not(in=w1, out=w3);          //w3=(C+D)'
+	And(a=C, b=D, out=w4);       //w4=CD
+	Or(a=w3, b=w4, out=y);       //y	                            
+	Not(in=B, out=notB);        
+	And(a=notB, b=w1, out=w5);  //w5=B'(C+D)
+	And(a=B, b=w3, out=w6);      //w6=B(C+D)'
+	Or(a=w5, b=w6, out=x);       //x
+	Not(in=D, out=z);            //z
+}
